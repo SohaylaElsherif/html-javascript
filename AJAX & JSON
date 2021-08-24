@@ -1,0 +1,70 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var jsonObj, jsObj;
+
+        this.onload = function() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4) {
+                    if (xhr.status == 200) {
+                        jsObj = JSON.parse(xhr.responseText);
+                        jsObjProperies = Object.getOwnPropertyNames(jsObj);
+                        e = Object.values(jsObjProperies);
+
+                        var sel = document.getElementById('BandsName');
+                        for (var i in jsObjProperies) {
+                            var optBand = document.createElement('option');
+                            optBand.appendChild(document.createTextNode(jsObjProperies[i]));
+                            optBand.value = jsObjProperies[i];
+                            sel.appendChild(optBand);
+                        }
+                    }
+                }
+
+            }
+            xhr.open("Get", "rockbands.json");
+            xhr.send("");
+        }
+
+        function selectedBand() {
+            var sel = document.getElementById('BandsName');
+            var selArtist = document.getElementById('ArtistName');
+            for (var i in jsObj[sel.value]) {
+                var optArtist = document.createElement('option');
+                optArtist.appendChild(document.createTextNode(jsObj[sel.value][i].name));
+                optArtist.value = jsObj[sel.value][i].name;
+                selArtist.appendChild(optArtist);
+            }
+        }
+
+        function selectedArtist() {
+            var sel = document.getElementById('BandsName');
+            var selArtist = document.getElementById('ArtistName').value;
+            var i;
+            for (i in jsObj[sel.value]) {
+                if (jsObj[sel.value][i].name === selArtist)
+                    open(jsObj[sel.value][i].value, "_self");
+            }
+        }
+    </script>
+    <h1>Band</h1>
+    <select id="BandsName" onchange="selectedBand()">
+        <option value="" disabled="" selected="" hidden="">please select:</option>
+       
+    </select>
+    <h1>Artist</h1>
+    <select id="ArtistName" onchange="selectedArtist()">
+        <option value="" disabled="" selected="" hidden="">please select:</option>
+        
+    </select>
+</body>
+
+</html>
