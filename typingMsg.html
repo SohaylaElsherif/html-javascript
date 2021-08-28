@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A.1.2 Window Object </title>
+    <!-- A.1.2. Write a script that shows a “typing message” appearing in
+    a new child window. The new window should close after few
+    seconds of displaying your message.-->
+    <script>
+        var x;
+        var text = "Text messages are used for personal, family, business and social purposes. Governmental and non-governmental organizations use text messaging for communication between colleagues. In the 2010s, the sending of short informal messages became an accepted part of many cultures, as happened earlier with emailing.";
+        var winTyping;
+
+        function typingmsg() {
+            x = window.open("", "target", "width=400,height=200");
+            x.focus();
+            var i = 0;
+
+            winTyping = window.setInterval(() => {
+                if (i < text.length) {
+                    x.document.write(text[i]);
+                    i++;
+                } else {
+                    closeWin();
+                }
+            }, 50);
+        }
+
+        function closeWin() {
+            clearInterval(winTyping);
+            setTimeout(function() {
+                x.close();
+            }, 5000);
+        }
+    </script>
+</head>
+<h1>typing message</h1>
+<button type="submit" onclick="typingmsg()"> show message </button>
+
+<body>
+</body>
+
+</html>
