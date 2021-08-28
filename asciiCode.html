@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Alert ASCII Code of any key pressed and detect whether it is
+alt key or ctrl key or shift key-->
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function AsciiAndDetection(e) {
+            var press = window.event ? event : e
+            if (press.altKey || press.ctrlKey || press.shiftKey)
+                alert("you pressed one of the 'Alt', 'Ctrl', or 'Shift' keys");
+            else {
+                var t = press.key;
+                alert("you pressed " + t.charAt(t.lenght - 1) + " :" + t.charCodeAt(t.lenght - 1));
+            }
+        }
+
+        document.onkeypress = AsciiAndDetection;
+    </script>
+</body>
+
+</html>
