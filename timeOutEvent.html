@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--B.3. Create a simple form that on submit display confirmation
+message and according to user action it will either stop submission
+from proceeding or it will continue form submission. Make your
+own custom event “timeout” that fires after 30 seconds if the user
+hasn’t entered any data.
+-->
+    <title>Document</title>
+</head>
+
+<body>
+    <form>
+        <p>Enter Your Name :</p><input type="text" name="name" id="userName">
+        <p>Enter Your Age :</p><input type="text" name="name" id="userage">
+        <input type="submit" value="Submit" onclick="confirmationMsg()">
+    </form>
+
+    <script>
+        function confirmationMsg() {
+            var result = prompt("U want to confirm ?? \n press (1) for yes ,\n press(2) for No ", undefined);
+            switch (result) {
+                case 1:
+                    alert("The form was submitted");
+
+
+                    return false;
+                case 2:
+                    alert("The form was not submitted");
+                    return true;
+
+                default:
+                    alert("u entered the wrong data or time out");
+
+                    return false;
+
+            }
+        }
+    </script>
+</body>
+
+</html>
