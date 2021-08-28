@@ -1,0 +1,50 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>A.1.1 Window Object </title>
+    <!-- A.1.1. Create a parent window that opens a flying child window.
+Hint: Start by creating a parent window that opens a child
+window.
+Child window should always be on top view and moves up and
+down within boundaries of user screen.
+Parent window should contain a button that stops child window
+movement.-->
+    <script>
+        var x = window.open("", "target", "width=150,height=150,top=");
+        x.moveTo(window.screenX, window.screenY);
+        //  var availableSpace = window.outerHeight - 150;
+        var moveforword = true;
+        x.focus();
+
+        var y = window.setInterval(() => {
+            availableHeight = window.innerHeight - x.screenY;
+            if (availableHeight > 50 && moveforword === true)
+                x.moveBy(50, 50);
+            else if (availableHeight > 50 && moveforword === false) {
+                x.moveBy(-50, -50);
+                if (window.screenY === x.screenY) {
+                    moveforword = true;
+                }
+            } else if (availableHeight < 50) {
+                moveforword = false;
+                x.moveBy(-50, -50);
+            }
+
+
+        }, 500);
+
+        function stop() {
+            clearInterval(y);
+            x.focus();
+
+
+        }
+    </script>
+</head>
+<button type="submit" onclick="stop()"> Stop </button>
+
+<body>
+</body>
+
+</html>
